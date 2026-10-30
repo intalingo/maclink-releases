@@ -5,9 +5,13 @@ MacLink sends sound both ways between two Macs, for working on a Mac you control
 - **Remote Mac**: the Mac you control from far away. Calls and apps run here. Its sound goes to your local Mac, and your voice reaches its apps as **MacLink Microphone**. Its own speakers and microphone stay silent.
 - **Local Mac**: the Mac in front of you. You listen and talk with any microphone or headset.
 
-Each remote Mac is paired with one local Mac using a 6-digit code.
+You sign in on each Mac with your **MacLink account** (made at **https://maclink-admin.vercel.app**, approved by an admin), and they pair by themselves. You can also listen to a remote Mac **in the browser** on that website, from any computer, Windows included.
 
-**Needs:** macOS 14.4 or newer on both Macs, an internet connection, and an administrator password on the remote Mac (once, for the audio driver). No Xcode, GitHub account or other software is needed.
+**Needs:** macOS 14.4 or newer on both Macs, an internet connection, an approved MacLink account, and an administrator password on the remote Mac (once, for the audio driver). No Xcode, GitHub account or other software is needed.
+
+## 0. Create your account
+
+Open **https://maclink-admin.vercel.app**, enter your email and the code you receive. An admin approves new accounts; you get an email when yours is ready. The **Get MacLink** section there also has the download and the same install commands.
 
 ---
 
@@ -28,7 +32,9 @@ When MacLink opens:
 2. Click **Allow** when macOS asks for the **microphone**.
 3. In the **Permissions** window, click **Turn On** next to anything still missing: Open at login, Accessibility, Control the browser, Control System Events. Each one opens the right place in System Settings.
 4. If macOS shows **Background Items Added**, leave it switched on. That is MacLink's helper that reopens it if it ever quits.
-5. Go to **Settings** and create a **pairing code**. Keep this 6-digit code for step 2.
+5. Click **Sign in to MacLink**. A browser page opens: sign in, check that it shows the same code as the Mac, and click **Connect this Mac**. (Typing through a remote desktop is awkward? Click **Copy link** in MacLink and open the link on your phone or your own computer instead.)
+
+The remote Mac now appears under **My Macs** on the website.
 
 > **Using Splashtop on the remote Mac?** Splashtop installs its own sound drivers, which can take the sound before MacLink does. To remove them (asks for the password):
 >
@@ -50,13 +56,17 @@ No password is needed. When MacLink opens:
 
 1. Choose **Local Mac**.
 2. Click **Allow** for the **microphone**, and turn on Speech Recognition (live captions) and Notifications (call alerts) in the Permissions window.
-3. Go to **Settings**, type the **6-digit code** from the remote Mac, and click Pair.
+3. Click **Sign in to MacLink**, sign in on the page that opens, choose which of your remote Macs this one listens to, and click **Connect this Mac**.
 
-Within a few seconds both Macs show **Connected**. Pick your microphone and headset on the local Mac's Home page.
+Within a few seconds both Macs show **Connected**. Everything you need during a call is in the **menu-bar panel** (the sound-bars icon at the top of the screen): mic, sound, captions, dark screen, volumes, microphone and headset, call buttons.
+
+**No local Mac?** On the website, open your remote Mac and click **Listen in browser** (Chrome or Edge, with a headset). Only one listener is active at a time: the browser or the local Mac.
 
 ## Updating
 
-Run the same line on each Mac, without `remote`. It always installs the newest version, keeps your pairing and settings, and needs no password:
+From MacLink 0.10.0 on: when a new version is out, the menu-bar panel shows **Update**. Click it; MacLink downloads, checks and installs it, then restarts by itself. (Settings → **Check for updates** checks right away.)
+
+Older versions, or if you prefer Terminal: run the same line on each Mac, without `remote`. It always installs the newest version, keeps your pairing and settings, and needs no password:
 
 ```bash
 curl -fsSL https://github.com/intalingo/maclink-releases/releases/latest/download/install.sh | bash
